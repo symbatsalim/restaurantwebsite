@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>La Dolce Vita</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header>
+  <p class="handwritten">Welcome to La Dolce Vita</p>
+  <nav>
+    <ul>
+      <li><a href="#" onclick="openModal('menuModal')">Menu</a></li>
+      <li><a href="#" onclick="openModal('reserveModal')">Reservations</a></li>
+      <li><a href="#" onclick="openModal('reviewsModal')">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about us.html">About Us</a></li>
+    </ul>
+  </nav>
+  <div class="account-dropdown">
+    <button class="account-btn" onclick="toggleDropdown()">
+      <i class="fas fa-user-circle"></i>
+    </button>
+    <ul class="dropdown-menu" id="accountDropdown">
+    </ul>
+  </div>
+  <button id="mobile-menu-btn">
+    <i class="fas fa-bars"></i>
+  </button>
+</header>
+<section id="our-story">
+  <h2 style=" font-family: 'VIVIAN';"> Our Story </h2>
+  <p>At "La Dolce Vita," we celebrate the timeless traditions of Italian cuisine, offering dishes made with fresh ingredients and a passion for cooking. Our welcoming atmosphere reflects the warmth of Italian hospitality, while showcasing unique cultural elements from Italy.</p>
+</section>
+<section class="gallery" loading="lazy">
+  <div class="slider-wrapper">
+    <div class="slider">
+      <img src="img/IMG_1314.JPG"/>
+      <img src="img/IMG_1402.JPG"/>
+      <img src="img/IMG_1313.JPG"/>
+      <img src="img/IMG_1401.JPG"/>
+      <img src="img/IMG_1312 2.JPG"/>
+      <img src="img/IMG_1398.JPG"/>
+      <img src="img/IMG_1400.JPG"/>
+      <img src="img/IMG_1399.JPG"/>
+    </div>
+  </div>
+</section>
+
+<!-- Menu Modal -->
+<div id="menuModal" class="modal modal-wide">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('menuModal')">&times;</span>
+      <section id="interactive-menu" class="container-fluid p-4" style="background: #fff9f0;">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 style="color: #321905; font-family: 'VIVIN';">Our Interactive Menu</h2>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group mb-3">
+              <select id="dishCategory" class="form-select" style="border: 1px solid #d4a762;">
+                <option value="">Select Category</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" id="newDishName" class="form-control" placeholder="Dish name" style="border: 1px solid #d4a762;">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" id="newDishDesc" class="form-control" placeholder="Description" style="border: 1px solid #d4a762;">
+            </div>
+            <button class="btn w-100" style="background-color: #d4a762; color: white;" onclick="addNewDish()">
+              <i class="fas fa-plus"></i> Add Dish
+            </button>
+          </div>
+        </div>
+        <div id="menuDisplay"></div>
+        <div class="text-center my-5">
+          <button id="randomDishBtn" class="btn btn-warning btn-lg px-4 py-2 rounded-pill shadow-sm">
+            <i class="fas fa-random me-2"></i> Random Dish!
+          </button>
+
+          <div id="randomDishOutput" class="mt-4 p-4 bg-light rounded-3 shadow-sm" style="max-width: 500px; margin: 0 auto; display: none;">
+            <h4 class="text-danger mb-3"></h4>
+            <p class="lead"></p>
+            <small class="text-muted fst-italic"></small>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="dish-comparator p-4 my-5" style="background: #fff9f0; border-radius: 10px; max-width: 800px; margin: 0 auto;">
+  <h3 style="color: #321905; font-family: 'VIVIAN'; font-size: 2rem; text-align: center;">
+    Compare Our Dishes
+  </h3>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label for="dish1" class="form-label" style="color: #555; font-weight: 500;">First Dish</label>
+        <select id="dish1" class="form-select" style="border: 1px solid #d4a762;">
+          <option value="">Select a dish...</option>
+          <option value="8">Bruschetta ($8)</option>
+          <option value="16">Pasta Carbonara ($16)</option>
+          <option value="22">Grilled Salmon ($22)</option>
+          <option value="18">Pizza Margherita ($18)</option>
+          <option value="9">Tiramisu ($9)</option>
+          <option value="12">Aperol Spritz ($12)</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label for="dish2" class="form-label" style="color: #555; font-weight: 500;">Second Dish</label>
+        <select id="dish2" class="form-select" style="border: 1px solid #d4a762;">
+          <option value="">Select a dish...</option>
+          <option value="8">Bruschetta ($8)</option>
+          <option value="16">Pasta Carbonara ($16)</option>
+          <option value="22">Grilled Salmon ($22)</option>
+          <option value="18">Pizza Margherita ($18)</option>
+          <option value="9">Tiramisu ($9)</option>
+          <option value="12">Aperol Spritz ($12)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button id="compareDishesBtn" class="btn w-100 mt-3"
+          style="background-color: #d4a762; color: white; padding: 10px; border-radius: 25px; font-weight: 600;">
+    <i class="fas fa-balance-scale me-2"></i> Compare Prices
+  </button>
+  <div id="comparisonResult" class="mt-4 p-4 text-center"
+       style="display: none; background: white; border-radius: 8px; border-left: 4px solid #d4a762;">
+    <h5 style="color: #321905; margin-bottom: 15px;">Price Comparison</h5>
+    <p id="priceResult" style="font-size: 1.1rem; color: #555;"></p>
+    <p id="savingsTip" style="font-style: italic; color: #d4a762; margin-top: 10px;"></p>
+  </div>
+</div>
+
+<!-- Reservation Modal -->
+<div id="reserveModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('reserveModal')">&times;</span>
+    <section id="reserve">
+      <h2>Reserve a Table</h2>
+      <form id="reserveForm">
+        <label>Name:</label>
+        <input type="text" id="reserveName" required>
+        <label>Date:</label>
+        <input type="date" id="reserveDate" required>
+        <label>Time:</label>
+        <input type="time" id="reserveTime" required>
+        <label>Guests:</label>
+        <input type="number" id="reserveGuests" min="1" required>
+        <button type="submit">Book Now</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<!-- Reviews Modal -->
+<div id="reviewsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('reviewsModal')">&times;</span>
+    <section id="reviews">
+      <h2>Customer Reviews</h2>
+      <div id="reviewsContainer"></div>
+      <h3>Submit a Review</h3>
+      <form id="reviewForm">
+        <label>Your Review:</label>
+        <textarea id="reviewText" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('registerModal')">&times;</span>
+    <section id="register">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label>Name:</label>
+        <input type="text" id="regName" required>
+        <label>Email:</label>
+        <input type="email" id="regEmail" required>
+        <label>Password:</label>
+        <input type="password" id="regPassword" required minlength="6">
+        <button type="submit">Register</button>
+        <p class="login-link">Already have an account? <a href="#" onclick="closeModal('registerModal'); openModal('loginModal')">Login here</a></p>
+      </form>
+    </section>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <section id="login">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label>Email:</label>
+        <input type="email" id="loginEmail" required>
+        <label>Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<div class="random-number-game p-4 my-5 text-center" style="background: #fff9f0; border-radius: 10px; max-width: 600px; margin: 0 auto;">
+  <h3 style="color: #321905; font-family:'VIVIAN';', cursive; font-size: 2rem;">
+    Today's Lucky Number
+  </h3>
+  <p class="mb-4" style="color: #555;">Click the button to generate your lucky number and win a special offer!</p>
+  <button id="generateNumberBtn" class="btn mb-4"
+          style="background-color: #d4a762; color: white; padding: 10px 30px; border-radius: 25px; font-weight: 600;">
+    Generate Number
+  </button>
+  <div id="numberResult" class="p-4" style="display: none; background: white; border-radius: 8px; border-left: 4px solid #d4a762;">
+    <div class="number-display mb-3" style="font-size: 3rem; color: #321905; font-weight: bold;"></div>
+    <div class="number-facts">
+      <p class="mb-2" style="color: #555;"><i class="fas fa-info-circle me-2" style="color: #d4a762;"></i> <span id="evenOdd"></span></p>
+      <p class="mb-2" style="color: #555;"><i class="fas fa-balance-scale me-2" style="color: #d4a762;"></i> <span id="sizeComparison"></span></p>
+      <p class="mb-0 mt-3" style="color: #d4a762; font-weight: 600;" id="specialOffer"></p>
+    </div>
+  </div>
+</div>
+<div class="chef-special p-4 my-5 text-center" style="background: #fff9f0; border-radius: 10px;">
+  <h3 style="color: #321905;">Today's Chef's Special</h3>
+  <div id="apiDishContainer" class="mt-3">
+    <p>Loading today's special...</p>
+  </div>
+</div>
+<footer>
+  <p>© 2025 La Dolce Vita. All Rights Reserved.</p>
+  <div class="social-links">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-2gis"></i></a>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

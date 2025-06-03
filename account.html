@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account - La Dolce Vita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+  <p class="handwritten">My Account</p>
+  <div class="account-dropdown">
+    <button class="account-btn" onclick="toggleDropdown()">
+      <i class="fas fa-user-circle"></i>
+    </button>
+    <ul class="dropdown-menu" id="accountDropdown">
+    </ul>
+  </div>
+  <button id="mobile-menu-btn">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="rest.html">Home</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="account-container">
+  <div class="account-header">
+    <h2>My Account</h2>
+    <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+  </div>
+
+  <div class="account-info" id="accountInfo">
+    <div class="info-item">
+      <span class="info-label">Name:</span>
+      <span class="info-value" id="accountName"></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Email:</span>
+      <span class="info-value" id="accountEmail"></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Status:</span>
+      <span class="info-value badge" id="accountStatus"></span>
+    </div>
+  </div>
+
+  <div class="edit-form" id="editForm" style="display: none;">
+    <h3>Edit Profile</h3>
+    <div class="form-group">
+      <label for="editName">Name</label>
+      <input type="text" id="editName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="editPassword">New Password (leave blank to keep current)</label>
+      <input type="password" id="editPassword" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" class="form-control">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="saveProfileChanges()">Save Changes</button>
+      <button class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDeleteAccount()">Delete Account</button>
+    </div>
+  </div>
+</div>
+<main class="account-container">
+  <div class="account-header">
+    <h2 id="welcome-message">My Actions</h2>
+    <button onclick="logout()" class="logout-btn">Logout</button>
+  </div>
+
+  <div class="account-section">
+    <div class="section-header">
+      <h3><i class="fas fa-calendar-alt"></i> Your Reservations</h3>
+      <button onclick="openModal('reserveModal')" class="btn btn-primary">
+        <i class="fas fa-plus"></i> New Reservation
+      </button>
+    </div>
+
+    <div id="reservations-list" class="activity-list">
+      <div class="empty-state">
+        <i class="fas fa-calendar-times"></i>
+        <p>No reservations yet</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="account-section">
+    <div class="section-header">
+      <h3><i class="fas fa-star"></i> Your Reviews</h3>
+      <button onclick="openModal('reviewsModal')" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Write Review
+      </button>
+    </div>
+
+    <div id="user-reviews-list" class="activity-list">
+      <div class="empty-state">
+        <i class="fas fa-comment-slash"></i>
+        <p>No reviews yet</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 La Dolce Vita. All Rights Reserved.</p>
+  <div class="social-links">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<div id="reserveModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('reserveModal')">&times;</span>
+    <section id="reserve">
+      <h2>Reserve a Table</h2>
+      <form id="reserveForm">
+        <label>Name:</label>
+        <input type="text" id="reserveName" required>
+        <label>Date:</label>
+        <input type="date" id="reserveDate" required>
+        <label>Time:</label>
+        <input type="time" id="reserveTime" required>
+        <label>Guests:</label>
+        <input type="number" id="reserveGuests" min="1" required>
+        <button type="submit">Book Now</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<div id="reviewsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('reviewsModal')">&times;</span>
+    <section id="reviews">
+      <h2>Customer Reviews</h2>
+      <div id="reviewsContainer"></div>
+      <h3>Submit a Review</h3>
+      <form id="reviewForm">
+        <label>Your Review:</label>
+        <textarea id="reviewText" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
